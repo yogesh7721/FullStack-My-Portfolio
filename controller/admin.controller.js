@@ -56,7 +56,8 @@ exports.deleteSocial = asyncHandler(async (req, res) => {
     res.json({ message: "SocialMedia Deleted Success" })
 })
 
-//
+
+/// carousel
 
 
 exports.addCarousel = asyncHandler(async (req, res) => {
@@ -64,10 +65,10 @@ exports.addCarousel = asyncHandler(async (req, res) => {
         const { caption } = req.body
         const { isError, error } = checkEmpty({ caption })
         if (isError) {
-            return res.status(400).json({ message: "All Fiel Required", error })
+            return res.status(400).json({ message: "All Field Required", error })
         }
         if (!req.file) {
-            return res.status(400).json({ message: " hero image is Required" })
+            return res.status(400).json({ message: " Hero image is Required" })
         }
         const { secure_url } = await cloudinary.uploader.upload(req.file.path)
         await Social.create(req.body)
