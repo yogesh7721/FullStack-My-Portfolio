@@ -1,9 +1,12 @@
 const mongoose = require("mongoose")
 
 const carouselSchema = new mongoose.Schema({
-    hero: { type: String },
-    caption: { type: String },
-
+    hero: {
+        type: String
+    },
+    caption: {
+        type: String
+    },
 }, { timestamps: true })
 
-module.exports = mongoose.model("corousel", carouselSchema)
+module.exports = mongoose.model("carousel", carouselSchema)

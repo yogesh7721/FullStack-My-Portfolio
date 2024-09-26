@@ -1,32 +1,26 @@
-
-
-
-
 const router = require("express").Router()
-const admin = require("../controller/admin.controller")
+const adminController = require("../controller/admin.controller")
 
 router
-    .post("/add-tech", admin.addTechnology)
-    .get("/get-tech", admin.getTechnology)
-    .put("/update-tech/:id", admin.updateTechnology)
-    .delete("/delete-tech/:id", admin.deleteTechnology)
-
-
+    .get("/get-tech",adminController.getTechnology)
+    .post("/add-tech",adminController.addTechnology)
+    .put("/update-tech/:id",adminController.updateTechnology)
+    .delete("/delete-tech/:id",adminController.deleteTechnology)
 
     //   SOCIAL MEDIA
+    .post("/add-social", adminController.addSocial)
+    .get("/get-social", adminController.getSocial)
+    .put("/update-social/:id", adminController.updateSocial)
+    .delete("/delete-social/:id", adminController.deleteSocial)
 
-    .post("/add-social", admin.addSocial)
-    .get("/get-social", admin.getSocial)
-    .put("/update-social/:id", admin.updateSocial)
-    .delete("/delete-social/:id", admin.deleteSocial)
-
-
-    .post("/add-carousel", admin.addCarousel)
-    .get("/get-carousel", admin.getCarousel)
-    .put("/update-carousel/:id", admin.updateCarousel)
-    .delete("/delete-carousel/:id", admin.deleteCarousel)
-
-
-
-
+    // Carousel
+    .post("/add-caro", adminController.addCarousel)
+    .get("/fetch-caro", adminController.getAllCarousel)
+    .put("/update-caro/:id", adminController.updateCarousel)
+    .delete("/delete-caro/:id", adminController.deleteCarousel)
+    
+    // ADD Project
+    .get("/fetch-project",adminController.fetchProjects)
+    .post("/add-project",adminController.addProject)
+    .delete("/delete-project/:id", adminController.deleteProject)
 module.exports = router
