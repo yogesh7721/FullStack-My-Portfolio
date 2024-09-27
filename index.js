@@ -2,12 +2,14 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
+const path = require("path")
 const { adminProtected } = require("./middleware/Protected")
 require("dotenv").config({ path: "./.env" })   // env File Path 
 
 const app = express()
 // Middleware
 app.use(cors({ origin: "http://localhost:5173", credentials: true }))
+app.use(express.static("dist"))
 app.use(cookieParser())
 app.use(express.json())
 
@@ -15,8 +17,10 @@ app.use("/api/auth", require("./routes/auth.routes"))
 app.use("/api/admin", adminProtected, require("./routes/admin.routes"))
 app.use("/api/public", require("./routes/public.routes"))
 
+// 404
 app.use("*", (req, res) => {
-    res.status(404).json({ message: "Resours Not found" })
+    res.sendFile(path.join(__dirname, "dist", "index.html"))
+    // res.status(404).json({ message: "Resours Not found" })
 })
 app.use((err, req, res, next) => {
     console.log(err)
