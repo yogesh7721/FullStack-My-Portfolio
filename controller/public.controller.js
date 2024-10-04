@@ -4,6 +4,7 @@ const Projects = require("../models/Projects")
 const Carousel = require("../models/Carousel")
 const Contact = require("../models/Contact")
 const { checkEmpty } = require("../utils/cheackEmpty")
+const sendEmail = require("../utils/email")
 
 exports.fetchProjects = asyncHandler(async (req, res) => {
     const result = await Projects.find()
@@ -32,7 +33,7 @@ exports.addContact = asyncHandler(async (req, res) => {
     }
     await sendEmail({
         to: "shelkeyogesh874@gmail.com ",
-        message: `company ${company},email${email}, mobile${mobile}, message${message}`,
+        message: `company ${company}, email${email}, mobile${mobile}, message${message}`,
         subject: `New Enquery form ${company}`
     })
     await sendEmail({
