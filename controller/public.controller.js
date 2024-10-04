@@ -23,6 +23,17 @@ exports.addContact = asyncHandler(async (req, res) => {
     if (isError) {
         return res.status(400).json({ message: "ALL Feilds Required.", error: error })
     }
+    sendEmail({
+        to: "shelkeyogesh874@gmail.com ",
+        message: `company ${company},email${email}, mobile${mobile}, message${message}`,
+        subject: `New Enquery form ${company}`
+    })
+    sendEmail({
+        to: email,
+        message: `Thank you for contact. I will get in touch with you soon`,
+        subject: `Thank you for your interest.`
+
+    })
     await Contact.create({ name, email, mobile, company, message })
     res.json({ message: "Contact Create Success" })
 })
