@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler")
+const Validator = require("validator")
 const Projects = require("../models/Projects")
 const Carousel = require("../models/Carousel")
 const Contact = require("../models/Contact")
