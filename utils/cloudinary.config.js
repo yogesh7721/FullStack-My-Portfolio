@@ -6,4 +6,5 @@ cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
 })
 
+
 module.exports = cloudinary
